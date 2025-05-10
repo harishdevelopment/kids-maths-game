@@ -35,6 +35,7 @@ function App() {
   const latestInputValueRef = useRef(inputValue);
   const runningScoreRef = useRef(0);
   const questionsRef = useRef<Question[]>([]);
+  const justNavigatedRef = useRef(false); // Add this ref to track navigation state
 
   // Keep refs up to date
   useEffect(() => {
@@ -113,7 +114,15 @@ function App() {
   };
 
   const handleAnswer = (val: string) => {
-    // Update the input value and keep the ref in sync
+    // Clear the input if this is the first number after navigation
+    if (justNavigatedRef.current) {
+      justNavigatedRef.current = false;
+      setInputValue(val[val.length - 1]); // Only use the last digit pressed
+      latestInputValueRef.current = val[val.length - 1];
+      return;
+    }
+    
+    // Normal input handling
     setInputValue(val);
     latestInputValueRef.current = val;
   };
@@ -196,6 +205,7 @@ function App() {
       // Navigate to new question and restore its previous answer
       setCurrent(index);
       setInputValue(latestUserAnswersRef.current[index] || '');
+      justNavigatedRef.current = true; // Set the navigation flag
     }
   };
 
