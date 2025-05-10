@@ -1,0 +1,352 @@
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+.maths-app {
+  max-width: 1280px;
+  margin: 0 auto;
+  text-align: center;
+  transition: all 0.3s ease;
+}
+
+.maths-app.large-text {
+  font-size: 2.2em;
+  padding: 2vw;
+}
+.maths-app h1 {
+  font-size: 3em;
+  margin-bottom: 0.5em;
+}
+.config-panel, .test-panel, .score-panel {
+  margin: 2em auto;
+  max-width: 700px;
+}
+.question {
+  font-size: 2em;
+  margin: 1em 0;
+}
+.answer-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1em;
+}
+.answer-box {
+  font-size: 2.5em;
+  width: 100%;
+  max-width: 300px;
+  height: 2.5em;
+  text-align: center;
+  margin-bottom: 0.5em;
+  border-radius: 0.5em;
+  border: 2px solid #646cff;
+  background: #fff;
+  color: #222;
+}
+.number-pad {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+}
+.pad-row {
+  display: flex;
+  gap: 0.5em;
+  justify-content: center;
+}
+.number-pad button {
+  font-size: 1.5em;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 0.5em;
+  background: #f0f0f0;
+  border: 1px solid #ccc;
+  margin: 0.1em;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.number-pad button:active {
+  background: #d0d0d0;
+}
+.pad-btn {
+  font-size: 2em !important;
+  width: 2.5em;
+  height: 2.5em;
+  border-radius: 0.5em !important;
+  margin: 0.1em;
+  min-width: 2.5em;
+  min-height: 2.5em;
+  color: #fff !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+.btn-primary.pad-btn {
+  background: #007bff !important;
+  border-color: #007bff !important;
+}
+.btn-secondary.pad-btn {
+  background: #6c757d !important;
+  border-color: #6c757d !important;
+}
+.btn-success.pad-btn {
+  background: #28a745 !important;
+  border-color: #28a745 !important;
+}
+.enter-btn {
+  background: #646cff;
+  color: #fff;
+  font-weight: bold;
+  min-width: 5em !important;
+  min-height: 2.5em !important;
+  font-size: 2em !important;
+  padding-left: 1.5em !important;
+  padding-right: 1.5em !important;
+  letter-spacing: 0.05em;
+}
+.timer {
+  font-size: 1.2em;
+  margin-bottom: 0.5em;
+}
+.nav-buttons button {
+  font-size: 1em;
+  margin: 0 0.5em;
+}
+.progress {
+  margin-top: 1em;
+  font-size: 1.1em;
+}
+.score-panel {
+  text-align: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 20px;
+  margin-top: 20px;
+  background-color: #f9f9f9;
+}
+.score-panel h2 {
+  color: #333;
+}
+.score-percentage {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+.score-details {
+  font-size: 1.2em;
+  margin-bottom: 0.3em;
+}
+.score-time {
+  font-size: 1.2em;
+  margin-bottom: 1.5em;
+}
+.score-panel .btn-primary {
+  font-size: 1.5em;
+  padding: 0.75em 1.5em;
+}
+.review-list {
+  margin: 2em 0;
+  text-align: left;
+}
+.review-item {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  padding: 0.8em;
+  border-radius: 0.3em;
+}
+.review-item.correct {
+  background: #e0ffe0;
+  color: #1a7f1a;
+}
+.review-item.incorrect {
+  background: #ffe0e0;
+  color: #a11a1a;
+}
+.review-item.list-group-item-success {
+  background-color: #d4edda !important; /* Bootstrap success background */
+  color: #155724 !important; /* Bootstrap success text */
+  border-color: #c3e6cb !important;
+}
+.review-item.list-group-item-danger {
+  background-color: #f8d7da !important; /* Bootstrap danger background */
+  color: #721c24 !important; /* Bootstrap danger text */
+  border-color: #f5c6cb !important;
+}
+.review-q {
+  display: inline-block;
+  min-width: 10em;
+  font-weight: bold;
+}
+.review-a {
+  margin-left: 1em;
+}
+
+.config-panel label,
+.config-panel select,
+.config-panel input[type="number"] {
+  font-size: 1.25em;
+}
+.config-panel input[type="number"],
+.config-panel select {
+  background: #fff;
+  color: #222;
+  border: 2px solid #646cff;
+  border-radius: 0.5em;
+  margin-bottom: 0.5em;
+  margin-top: 0.2em;
+  padding: 0.2em 0.5em;
+}
+
+.app-header {
+  position: relative;
+  z-index: 1000;
+}
+
+.ui-controls {
+  position: relative;
+  z-index: 1000;
+}
+
+.ui-controls .btn {
+  padding: 0.5em 1em;
+  font-size: 0.9em;
+  border-radius: 2em;
+  transition: all 0.2s ease;
+}
+
+.ui-controls .btn:hover {
+  background-color: #f8f9fa;
+  transform: translateY(-1px);
+}
+
+.ui-controls .dropdown-menu {
+  position: absolute;
+  right: 0;
+  margin-top: 0.5em;
+  min-width: 180px;
+  background: white;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+  border-radius: 0.8em;
+  padding: 0.5em 0;
+  border: 1px solid rgba(0,0,0,0.1);
+  animation: dropdownFade 0.2s ease;
+}
+
+.ui-controls .dropdown-item {
+  padding: 0.7em 1em;
+  cursor: pointer;
+  transition: all 0.2s;
+  border-radius: 0.4em;
+  margin: 0 0.3em;
+  width: auto;
+}
+
+.ui-controls .dropdown-item:hover {
+  background-color: #f8f9fa;
+  transform: translateX(2px);
+}
+
+.ui-controls .dropdown-item i {
+  opacity: 0.7;
+  transition: opacity 0.2s;
+}
+
+.ui-controls .dropdown-item:hover i {
+  opacity: 1;
+}
+
+.ui-controls .dropdown-divider {
+  margin: 0.5em 0;
+  border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+@keyframes dropdownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 768px) {
+  .maths-app {
+    padding: 1em;
+  }
+
+  .app-header h1 {
+    font-size: 1.8em !important;
+  }
+
+  .config-panel select,
+  .config-panel input[type="number"] {
+    width: 100%;
+    max-width: none;
+  }
+
+  .number-pad .pad-btn {
+    min-width: 2em;
+    min-height: 2em;
+    font-size: 1.5em !important;
+  }
+
+  .score-panel {
+    padding: 1em !important;
+  }
+
+  .ui-controls .btn {
+    padding: 0.4em 0.8em;
+    font-size: 0.8em;
+  }
+  
+  .ui-controls .dropdown-menu {
+    position: fixed;
+    top: auto;
+    bottom: 1em;
+    right: 1em;
+    left: 1em;
+    width: auto;
+  }
+  
+  .ui-controls .dropdown-item {
+    padding: 0.8em 1em;
+    font-size: 1.1em;
+  }
+}
