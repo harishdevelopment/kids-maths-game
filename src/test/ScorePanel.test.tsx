@@ -57,6 +57,6 @@ describe('ScorePanel', () => {
   it('displays try again button', () => {
     render(<ScorePanel {...defaultProps} />);
     const tryAgainButton = screen.getByText('Try Again');
-    expect(tryAgainButton).toBeInTheDocument();
+    expect(tryAgainButton).toHaveClass('btn', 'btn-primary');
   });
 });

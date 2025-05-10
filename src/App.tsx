@@ -256,7 +256,9 @@ function App() {
       )}
       {started && (
         <div className="test-panel">
-          <div className="timer mb-3">Time: {timer}s</div>
+          <div className="d-flex justify-content-between align-items-center mb-3">
+            <div className="timer">Time: {timer}s</div>
+          </div>
           <div className="mb-3">
             <div className="progress">
               <div 
@@ -310,6 +312,16 @@ function App() {
             onNumberClick={handleAnswer}
             onEnter={enterAnswer}
           />
+        </div>
+      )}
+      {!started && score !== null && (
+        <div className="mb-4">
+          <button 
+            className="btn btn-lg btn-primary w-100 mt-4"
+            onClick={reset}
+          >
+            Try Again
+          </button>
         </div>
       )}
       {score !== null && (

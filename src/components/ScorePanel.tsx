@@ -71,7 +71,7 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
           );
         })}
       </div>
-      <button onClick={onReset} className="btn btn-lg btn-primary mt-4 w-100">
+      <button onClick={onReset} className="btn btn-lg btn-primary w-100 mt-4">
         Try Again
       </button>
     </div>
