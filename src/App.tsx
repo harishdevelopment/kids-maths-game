@@ -34,6 +34,7 @@ function App() {
   const latestCurrentRef = useRef(current);
   const latestInputValueRef = useRef(inputValue);
   const runningScoreRef = useRef(0);
+  const questionsRef = useRef<Question[]>([]);
 
   // Keep refs up to date
   useEffect(() => {
@@ -48,6 +49,10 @@ function App() {
     latestInputValueRef.current = inputValue;
   }, [inputValue]);
 
+  useEffect(() => {
+    questionsRef.current = questions;
+  }, [questions]);
+
   const handleConfigChange = (key: keyof TestConfig, value: number | string) => {
     setConfig(prev => ({ ...prev, [key]: value }));
     if (key === 'timeLimit') {
@@ -61,6 +66,7 @@ function App() {
       () => generateQuestion(config.testType as TestType, config.digits)
     );
     setQuestions(qs);
+    questionsRef.current = qs; // Ensure ref is updated immediately
     const initialUserAnswers = Array(config.numQuestions).fill('');
     setUserAnswers(initialUserAnswers);
     latestUserAnswersRef.current = initialUserAnswers;
@@ -84,13 +90,16 @@ function App() {
           let answersAtTimeout = [...latestUserAnswersRef.current];
           const currentQuestionIndex = latestCurrentRef.current;
           const currentInputValue = latestInputValueRef.current.trim();
+          const currentQuestions = questionsRef.current;
 
-          if (currentInputValue !== '') {
-            if (currentQuestionIndex < answersAtTimeout.length) {
-              answersAtTimeout[currentQuestionIndex] = currentInputValue;
-              if (Number(currentInputValue) === questions[currentQuestionIndex].answer) {
-                runningScoreRef.current++;
-              }
+          // Only save the answer if there's a valid question and the answer has changed
+          if (currentInputValue !== '' && 
+              currentQuestionIndex < currentQuestions.length &&
+              currentInputValue !== answersAtTimeout[currentQuestionIndex]) {
+            answersAtTimeout[currentQuestionIndex] = currentInputValue;
+            // Update score if the answer is correct
+            if (Number(currentInputValue) === currentQuestions[currentQuestionIndex].answer) {
+              runningScoreRef.current++;
             }
           }
           
@@ -159,19 +168,18 @@ function App() {
       setIntervalId(null);
     }
 
+    // Get latest questions from ref
+    const currentQuestions = questionsRef.current;
+    
     // Calculate final score by checking each answer
     const finalScore = answers.reduce((score, answer, index) => {
-      return score + (answer.trim() !== '' && Number(answer) === questions[index].answer ? 1 : 0);
+      if (!currentQuestions[index]) return score; // Guard against missing question
+      return score + (answer.trim() !== '' && Number(answer) === currentQuestions[index].answer ? 1 : 0);
     }, 0);
 
     setScore(finalScore);
     setStarted(false);
-
-    if (timedOut) {
-      setTimeTaken(config.timeLimit);
-    } else {
-      setTimeTaken(config.timeLimit - latestTimerRef.current);
-    }
+    setTimeTaken(timedOut ? config.timeLimit : config.timeLimit - latestTimerRef.current);
   };
 
   const goToQuestion = (index: number) => {

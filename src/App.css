@@ -161,14 +161,15 @@
 }
 .score-panel {
   text-align: center;
-  border: 1px solid #ddd;
+  border: 1px solid var(--bs-border-color);
   border-radius: 8px;
   padding: 20px;
   margin-top: 20px;
-  background-color: #f9f9f9;
+  background-color: var(--bs-tertiary-bg);
+  color: var(--bs-body-color);
 }
 .score-panel h2 {
-  color: #333;
+  color: var(--bs-heading-color);
 }
 .score-percentage {
   font-size: 2.5em;
@@ -197,22 +198,22 @@
   border-radius: 0.3em;
 }
 .review-item.correct {
-  background: #e0ffe0;
-  color: #1a7f1a;
+  background: var(--bs-success-bg-subtle);
+  color: var(--bs-success-text-emphasis);
 }
 .review-item.incorrect {
-  background: #ffe0e0;
-  color: #a11a1a;
+  background: var(--bs-danger-bg-subtle);
+  color: var(--bs-danger-text-emphasis);
 }
 .review-item.list-group-item-success {
-  background-color: #d4edda !important; /* Bootstrap success background */
-  color: #155724 !important; /* Bootstrap success text */
-  border-color: #c3e6cb !important;
+  background-color: var(--bs-success-bg-subtle) !important;
+  color: var(--bs-success-text-emphasis) !important;
+  border-color: var(--bs-success-border-subtle) !important;
 }
 .review-item.list-group-item-danger {
-  background-color: #f8d7da !important; /* Bootstrap danger background */
-  color: #721c24 !important; /* Bootstrap danger text */
-  border-color: #f5c6cb !important;
+  background-color: var(--bs-danger-bg-subtle) !important;
+  color: var(--bs-danger-text-emphasis) !important;
+  border-color: var(--bs-danger-border-subtle) !important;
 }
 .review-q {
   display: inline-block;
