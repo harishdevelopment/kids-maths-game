@@ -7,9 +7,11 @@ import { NumberPad } from './components/NumberPad';
 import { ScorePanel } from './components/ScorePanel';
 import { UIControls } from './components/UIControls';
 import { generateQuestion } from './utils/math';
+import { useDeviceType } from './utils/useDeviceType';
 import type { Question, TestType, TestConfig } from './types';
 
 function App() {
+  const { isMobile, isTablet } = useDeviceType();
   const [uiScale, setUIScale] = useState(1);
   const [config, setConfig] = useState<TestConfig>({
     testType: 'addition',
@@ -239,10 +241,11 @@ function App() {
   }, []);
 
   return (
-    <div className="maths-app" style={{
-      fontSize: `${1.4 * uiScale}em`,
-      padding: `${2 * uiScale}vw`
-    }}>
+    <div className={`maths-app ${isMobile ? 'mobile' : isTablet ? 'tablet' : 'desktop'}`} 
+      style={{
+        fontSize: `${1.4 * uiScale}em`,
+        padding: `${isMobile ? '1vw' : isTablet ? '1.5vw' : '2vw'}`
+      }}>
       <div className="app-header d-flex justify-content-between align-items-center mb-4">
         <h1 style={{ fontSize: '2.2em' }}>Kids Maths Test</h1>
         <UIControls onSizeChange={handleSizeChange} />

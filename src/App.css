@@ -46,8 +46,8 @@
   margin: 0 auto;
   text-align: center;
   transition: all 0.3s ease;
+  padding: 2vw;
 }
-
 .maths-app.large-text {
   font-size: 2.2em;
   padding: 2vw;
@@ -365,5 +365,90 @@
   .ui-controls .dropdown-item {
     padding: 0.8em 1em;
     font-size: 1.1em;
+  }
+}
+
+/* Device specific styles */
+/* Mobile styles */
+@media screen and (max-width: 767px) {
+  .maths-app {
+    padding: 1em;
+    font-size: 0.9em;
+  }
+
+  .app-header h1 {
+    font-size: 1.8em !important;
+  }
+
+  .question {
+    font-size: 1.6em;
+    max-width: 100%;
+  }
+
+  .answer-box {
+    max-width: 100%;
+    font-size: 1.4em;
+  }
+
+  .number-pad .pad-btn {
+    font-size: 1.3em !important;
+    min-width: 2.2em;
+    min-height: 2.2em;
+  }
+
+  .nav-buttons button {
+    padding: 0.4em 0.6em;
+    font-size: 0.9em;
+  }
+
+  .score-panel {
+    padding: 1em;
+    margin: 1em 0;
+  }
+
+  .review-item {
+    font-size: 0.9em;
+  }
+}
+
+/* Tablet styles */
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .maths-app {
+    padding: 1.5em;
+    font-size: 1em;
+  }
+
+  .question {
+    font-size: 1.8em;
+    max-width: 400px;
+  }
+
+  .answer-box {
+    max-width: 400px;
+  }
+
+  .number-pad .pad-btn {
+    font-size: 1.6em !important;
+  }
+
+  .score-panel {
+    padding: 1.5em;
+    margin: 1.5em auto;
+  }
+}
+
+/* Desktop styles */
+@media screen and (min-width: 1024px) {
+  .maths-app {
+    padding: 2em;
+  }
+
+  .question {
+    font-size: 2em;
+    max-width: 500px;
+  }
+
+  .answer-box {
+    max-width: 500px;
   }
 }
