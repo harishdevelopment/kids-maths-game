@@ -28,7 +28,7 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
           </span>
         </p>
         <p className="score-details text-muted">
-          (Total: {questions.length}, 
+          (<span className="fw-bold">Total: {questions.length}</span>, 
           <span className="text-success fw-bold">Correct: {score}</span>, 
           <span className="text-danger fw-bold">Wrong: {answeredCount - score}</span>
           {unansweredCount > 0 && 
@@ -53,7 +53,7 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
               'list-group-item-danger'
             }`}>
               <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1 review-q">Q{i+1}: {q.question}</h5>
+                <h5 className="mb-1 review-q">Q{i+1}: {q.question} = {q.answer}</h5>
                 <small>
                   <span className={`badge ${
                     !isAnswered ? 'bg-warning' : 
@@ -65,7 +65,7 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
                 </small>
               </div>
               <p className="mb-1 review-a">
-                Your answer: {userAnswer || '-'} | Correct: {q.answer}
+                Your answer: {userAnswer || '-'}
                 <span className="ms-3 text-muted">
                   <i className="bi bi-clock"></i> {q.timeSpent || 0}s
                 </span>
