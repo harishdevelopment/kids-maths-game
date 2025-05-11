@@ -262,8 +262,7 @@ function App() {
         padding: `${isMobile ? '1vw' : isTablet ? '1.5vw' : '2vw'}`
       }}>
       <div className="app-header d-flex justify-content-between align-items-center mb-4">
-        <h1 style={{ fontSize: '2.2em' }}>Kids Maths Test</h1>
-        <UIControls onSizeChange={handleSizeChange} />
+        <h1 style={{ fontSize: '2.2em' }}>Maths Test</h1>
       </div>
       {!started && score === null && (
         <ConfigPanel 
@@ -275,7 +274,7 @@ function App() {
       {started && (
         <div className="test-panel">
           <div className="d-flex justify-content-between align-items-center mb-3">
-            <div className="timer">Time: {timer}s</div>
+            <div className="timer">Time : {timer}s</div>
             <button
               className="btn btn-outline-danger"
               onClick={handleManualFinish}
@@ -322,6 +321,7 @@ function App() {
             >
               <i className="bi bi-arrow-left"></i> Previous
             </button>
+            <UIControls onSizeChange={handleSizeChange} />
             <button 
               className="btn btn-secondary"
               onClick={() => goToQuestion(current + 1)}

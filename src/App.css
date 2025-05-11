@@ -62,10 +62,14 @@
 }
 .question {
   font-size: 2em;
-  margin: 1em 0;
+  margin: 0.5em 0; /* Reduced margin */
   width: 100%;
   max-width: 300px;
   margin: 1em auto;
+}
+.question h2 {
+  margin-bottom: 0.25em; /* Reduced bottom margin */
+  line-height: 1.2; /* Tighter line height */
 }
 .answer-input {
   display: flex;
@@ -79,14 +83,21 @@
   font-size: inherit !important;
   width: 100% !important;
   outline: none !important;
+  line-height: 1; /* Tighter line height */
+  padding: 0; /* Remove padding */
+  margin: 0; /* Remove margin */
+  height: 1.5em; /* Fixed height */
+  min-height: unset; /* Remove min-height */
+  height: auto; /* Allow content to determine height */
 }
 .answer-box {
   font-size: 1.6em;
   width: 100%;
   max-width: 300px;
-  min-height: 1em;
+  min-height: 1.5em; /* Further reduced height */
+  max-height: 2em; /* Limit maximum height */
   text-align: center;
-  margin: 0 auto 0.5em;
+  margin: 0.3em auto; /* Reduced margin */
   border-radius: 0.3em;
   border: 1px solid #646cff;
   background: #fff;
@@ -94,6 +105,8 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  line-height: 1; /* Tighter line height */
+  padding: 0.3em; /* Smaller padding */
 }
 .number-pad {
   display: flex;
@@ -387,7 +400,13 @@
 
   .answer-box {
     max-width: 100%;
-    font-size: 1.4em;
+    font-size: 1.2em; /* Smaller font on mobile */
+    min-height: 1.2em; /* Even smaller height on mobile */
+  }
+
+  .question h2 {
+    font-size: 1.4em; /* Smaller question text on mobile */
+    margin-bottom: 0.2em; /* Less space below question */
   }
 
   .number-pad .pad-btn {
@@ -425,6 +444,8 @@
 
   .answer-box {
     max-width: 400px;
+    font-size: 1.3em;
+    min-height: 1.3em;
   }
 
   .number-pad .pad-btn {
@@ -450,5 +471,7 @@
 
   .answer-box {
     max-width: 500px;
+    font-size: 1.4em;
+    min-height: 1.4em;
   }
 }
