@@ -276,6 +276,12 @@ function App() {
         <div className="test-panel">
           <div className="d-flex justify-content-between align-items-center mb-3">
             <div className="timer">Time: {timer}s</div>
+            <button
+              className="btn btn-outline-danger"
+              onClick={handleManualFinish}
+            >
+              Finish Test
+            </button>
           </div>
           <div className="mb-3">
             <div className="progress">
@@ -303,33 +309,27 @@ function App() {
               />
             </div>
           </div>
-          <div className="nav-buttons mb-3 d-flex justify-content-between">
+          <NumberPad
+            inputValue={inputValue}
+            onNumberClick={handleAnswer}
+            onEnter={enterAnswer}
+          />
+          <div className="nav-buttons mt-4 mb-3 d-flex justify-content-between">
             <button 
               className="btn btn-secondary"
               onClick={() => goToQuestion(current - 1)}
               disabled={current === 0}
             >
-              Previous
-            </button>
-            <button
-              className="btn btn-primary"
-              onClick={handleManualFinish}
-            >
-              Finish Test
+              <i className="bi bi-arrow-left"></i> Previous
             </button>
             <button 
               className="btn btn-secondary"
               onClick={() => goToQuestion(current + 1)}
               disabled={current === questions.length - 1}
             >
-              Next
+              Next <i className="bi bi-arrow-right"></i>
             </button>
           </div>
-          <NumberPad
-            inputValue={inputValue}
-            onNumberClick={handleAnswer}
-            onEnter={enterAnswer}
-          />
         </div>
       )}
       {!started && score !== null && (
