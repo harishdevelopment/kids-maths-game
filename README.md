@@ -17,7 +17,14 @@ Kids Maths Test is a configurable React + TypeScript app for children to practic
    ```sh
    npm run dev
    ```
-
+3. Build the app:
+   ```sh
+   npm run build
+   ```   
+4. Deploy the app to github pages
+   ```sh
+   npm run deploy
+   ```   
 ## Features
 - Selectable test types: addition, subtraction, multiplication, division
 - Configurable number digit range

@@ -116,15 +116,7 @@ function App() {
   };
 
   const handleAnswer = (val: string) => {
-    // Clear the input if this is the first number after navigation
-    if (justNavigatedRef.current) {
-      justNavigatedRef.current = false;
-      setInputValue(val[val.length - 1]); // Only use the last digit pressed
-      latestInputValueRef.current = val[val.length - 1];
-      return;
-    }
-    
-    // Normal input handling
+    // Simple input handling - just update both state and ref
     setInputValue(val);
     latestInputValueRef.current = val;
   };
@@ -206,8 +198,10 @@ function App() {
 
       // Navigate to new question and restore its previous answer
       setCurrent(index);
-      setInputValue(latestUserAnswersRef.current[index] || '');
-      justNavigatedRef.current = true; // Set the navigation flag
+      const previousAnswer = latestUserAnswersRef.current[index] || '';
+      setInputValue(previousAnswer);
+      latestInputValueRef.current = previousAnswer;
+      justNavigatedRef.current = false; // Don't need navigation flag anymore
     }
   };
 
