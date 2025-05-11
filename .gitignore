@@ -6,6 +6,7 @@ dist/
 
 # IDE
 .vscode/
+.idea/
 
 # Logs
 npm-debug.log*
