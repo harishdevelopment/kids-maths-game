@@ -29,6 +29,7 @@ function App() {
   const [intervalId, setIntervalId] = useState<ReturnType<typeof setInterval> | null>(null);
   const [inputValue, setInputValue] = useState('');
   const [timeTaken, setTimeTaken] = useState<number | null>(null);
+  const [questionStartTime, setQuestionStartTime] = useState<number>(Date.now());
 
   // Refs to hold latest values
   const latestUserAnswersRef = useRef<string[]>([]);
@@ -81,6 +82,7 @@ function App() {
     setStarted(true);
     setInputValue('');
     setTimeTaken(null);
+    setQuestionStartTime(Date.now()); // Initialize the start time when test begins
 
     if (intervalId) clearInterval(intervalId);
 
@@ -134,7 +136,20 @@ function App() {
     }
   };
 
+  const updateQuestionTime = () => {
+    const timeSpent = Math.round((Date.now() - questionStartTime) / 1000); // Convert to seconds
+    const updatedQuestions = [...questions];
+    updatedQuestions[current] = {
+      ...updatedQuestions[current],
+      timeSpent: timeSpent
+    };
+    setQuestions(updatedQuestions);
+  };
+
   const enterAnswer = () => {
+    // Save time spent on current question
+    updateQuestionTime();
+    
     // Save current answer if any
     saveCurrentAnswer();
 
@@ -143,6 +158,7 @@ function App() {
     if (current < questions.length - 1) {
       const nextIndex = current + 1;
       setCurrent(nextIndex);
+      setQuestionStartTime(Date.now());
       // Show previous answer for next question if it exists
       setInputValue(latestUserAnswersRef.current[nextIndex] || '');
     } else {
@@ -187,6 +203,9 @@ function App() {
 
   const goToQuestion = (index: number) => {
     if (index >= 0 && index < questions.length) {
+      // Save time spent on current question
+      updateQuestionTime();
+      
       // Save current answer before navigating
       const currentInputValue = latestInputValueRef.current.trim();
       if (currentInputValue !== '') {
@@ -201,6 +220,7 @@ function App() {
       const previousAnswer = latestUserAnswersRef.current[index] || '';
       setInputValue(previousAnswer);
       latestInputValueRef.current = previousAnswer;
+      setQuestionStartTime(Date.now());
       justNavigatedRef.current = false; // Don't need navigation flag anymore
     }
   };
@@ -213,6 +233,7 @@ function App() {
     setCurrent(0);
     setTimer(config.timeLimit);
     setInputValue('');
+    setQuestionStartTime(Date.now());  // Reset the question start time
     runningScoreRef.current = 0;
     if (intervalId) {
       clearInterval(intervalId);

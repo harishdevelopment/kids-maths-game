@@ -13,6 +13,7 @@ export interface DigitOption {
 export interface Question {
   question: string;
   answer: number;
+  timeSpent?: number;  // Time spent on this question in seconds
 }
 
 export interface TestConfig {

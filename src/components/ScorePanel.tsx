@@ -66,6 +66,9 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
               </div>
               <p className="mb-1 review-a">
                 Your answer: {userAnswer || '-'} | Correct: {q.answer}
+                <span className="ms-3 text-muted">
+                  <i className="bi bi-clock"></i> {q.timeSpent || 0}s
+                </span>
               </p>
             </div>
           );
