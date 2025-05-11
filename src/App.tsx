@@ -261,8 +261,8 @@ function App() {
         fontSize: `${1.4 * uiScale}em`,
         padding: `${isMobile ? '1vw' : isTablet ? '1.5vw' : '2vw'}`
       }}>
-      <div className="app-header d-flex justify-content-between align-items-center mb-4">
-        <h1 style={{ fontSize: '2.2em' }}>Maths Test</h1>
+      <div className="app-header d-flex justify-content-center align-items-center mb-4">
+        <h1 style={{ fontSize: '2.2em' }}>Kids Maths Test</h1>
       </div>
       {!started && score === null && (
         <ConfigPanel 
