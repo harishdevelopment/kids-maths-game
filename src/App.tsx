@@ -6,7 +6,7 @@ import { ConfigPanel } from './components/ConfigPanel';
 import { NumberPad } from './components/NumberPad';
 import { ScorePanel } from './components/ScorePanel';
 import { UIControls } from './components/UIControls';
-import { generateQuestion } from './utils/math';
+import { generateQuestions } from './utils/math';
 import { useDeviceType } from './utils/useDeviceType';
 import type { Question, TestType, TestConfig } from './types';
 
@@ -65,10 +65,7 @@ function App() {
   };
 
   const startTest = () => {
-    const qs = Array.from(
-      { length: config.numQuestions }, 
-      () => generateQuestion(config.testType as TestType, config.digits)
-    );
+    const qs = generateQuestions(config.testType as TestType, config.digits, config.numQuestions);
     setQuestions(qs);
     questionsRef.current = qs; // Ensure ref is updated immediately
     const initialUserAnswers = Array(config.numQuestions).fill('');
