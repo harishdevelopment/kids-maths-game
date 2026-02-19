@@ -76,6 +76,21 @@ describe('Math Utils', () => {
       const keys = new Set(questions.map(q => q.question));
       expect(keys.size).toBe(questions.length);
     });
+
+    it('handles exhausting the unique space for 1-digit multiplication without duplicates', () => {
+      const requestedCount = 100;
+      const questions = generateQuestions('multiplication', 1, requestedCount);
+
+      // Should never return more than requested
+      expect(questions.length).toBeLessThanOrEqual(requestedCount);
+
+      // Normalize questions so a × b and b × a are treated as duplicates
+      const keys = questions.map(q =>
+        q.question.split(' × ').map(Number).sort((a, b) => a - b).join('×')
+      );
+      const unique = new Set(keys);
+      expect(unique.size).toBe(questions.length);
+    });
   });
 
   describe('checkAnswer', () => {
