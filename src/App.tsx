@@ -92,7 +92,7 @@ function App() {
           clearInterval(id);
           setIntervalId(null);
 
-          let answersAtTimeout = [...latestUserAnswersRef.current];
+          const answersAtTimeout = [...latestUserAnswersRef.current];
           const currentQuestionIndex = latestCurrentRef.current;
           const currentInputValue = latestInputValueRef.current.trim();
           const currentQuestions = questionsRef.current;
