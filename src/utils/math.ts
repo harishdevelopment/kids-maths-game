@@ -53,12 +53,12 @@ export function generateQuestions(type: TestType, digits: number, count: number)
     attempts++;
     const q = generateQuestion(type, digits);
     const key =
-      type === 'multiplication'
+      type === 'multiplication' || type === 'addition'
         ? q.question
-            .split(' × ')
+            .split(type === 'multiplication' ? ' × ' : ' + ')
             .map(Number)
             .sort((x, y) => x - y)
-            .join('×')
+            .join(type === 'multiplication' ? '×' : '+')
         : q.question;
 
     if (!seen.has(key)) {
@@ -67,6 +67,13 @@ export function generateQuestions(type: TestType, digits: number, count: number)
     }
   }
 
+  // Note: if unique combinations are exhausted, we may return fewer questions than requested.
+  if (questions.length < count) {
+    console.warn(
+      `generateQuestions: generated ${questions.length} unique question(s) out of requested ${count} ` +
+        `(type="${type}", digits=${digits}, attempts=${attempts}, maxAttempts=${maxAttempts}).`
+    );
+  }
   return questions;
 }
 
