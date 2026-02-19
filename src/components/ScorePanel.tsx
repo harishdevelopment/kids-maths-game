@@ -23,7 +23,7 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
       <div className="score-summary mb-3">
         <p className="score-percentage h3">
           Your score: 
-          <span className={`fw-bold ${score === questions.length ? 'text-success' : 'text-primary'}`}>
+          <span className={`fw-bold ${score === questions.length ? 'text-success' : 'text-primary'}`}> 
             {scorePercentage}%
           </span>
         </p>
@@ -51,15 +51,15 @@ export function ScorePanel({ questions, userAnswers, score, timeTaken, onReset, 
               !isAnswered ? 'list-group-item-warning' : 
               isCorrect ? 'list-group-item-success' : 
               'list-group-item-danger'
-            }`}>
+            }`}> 
               <div className="d-flex w-100 justify-content-between">
-                <h5 className="mb-1 review-q">Q{i+1}: {q.question} = {q.answer}</h5>
+                <h5 className="mb-1 review-q">Q{i+1}: {q.question}</h5>
                 <small>
                   <span className={`badge ${
                     !isAnswered ? 'bg-warning' : 
                     isCorrect ? 'bg-success' : 
                     'bg-danger'
-                  }`}>
+                  }`}> 
                     {!isAnswered ? 'Unanswered' : isCorrect ? 'Correct' : 'Incorrect'}
                   </span>
                 </small>
