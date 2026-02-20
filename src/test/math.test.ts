@@ -77,6 +77,20 @@ describe('Math Utils', () => {
       expect(keys.size).toBe(questions.length);
     });
 
+    it('generates the requested number of subtraction questions without duplicates', () => {
+      const questions = generateQuestions('subtraction', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = new Set(questions.map(q => q.question));
+      expect(keys.size).toBe(questions.length);
+    });
+
+    it('generates the requested number of division questions without duplicates', () => {
+      const questions = generateQuestions('division', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = new Set(questions.map(q => q.question));
+      expect(keys.size).toBe(questions.length);
+    });
+
     it('treats a + b and b + a as duplicates for addition', () => {
       // Run many times to confirm no commutative duplicates appear
       for (let i = 0; i < 5; i++) {
