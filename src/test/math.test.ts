@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { getRandomNumber, generateQuestion, checkAnswer, calculateScore } from '../utils/math';
+import { getRandomNumber, generateQuestion, generateQuestions, checkAnswer, calculateScore } from '../utils/math';
 
 describe('Math Utils', () => {
   describe('getRandomNumber', () => {
@@ -44,6 +44,78 @@ describe('Math Utils', () => {
       expect(b).not.toBe(0);
       expect(question.answer).toBe(a / b);
       expect(Number.isInteger(question.answer)).toBe(true);
+    });
+  });
+
+  describe('generateQuestions', () => {
+    it('generates the requested number of multiplication questions without duplicates', () => {
+      const questions = generateQuestions('multiplication', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = questions.map(q =>
+        q.question.split(' × ').map(Number).sort((a, b) => a - b).join('×')
+      );
+      const unique = new Set(keys);
+      expect(unique.size).toBe(questions.length);
+    });
+
+    it('treats a × b and b × a as duplicates for multiplication', () => {
+      // Run many times to confirm no commutative duplicates appear
+      for (let i = 0; i < 5; i++) {
+        const questions = generateQuestions('multiplication', 1, 10);
+        const keys = questions.map(q =>
+          q.question.split(' × ').map(Number).sort((a, b) => a - b).join('×')
+        );
+        const unique = new Set(keys);
+        expect(unique.size).toBe(questions.length);
+      }
+    });
+
+    it('generates the requested number of addition questions without duplicates', () => {
+      const questions = generateQuestions('addition', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = new Set(questions.map(q => q.question));
+      expect(keys.size).toBe(questions.length);
+    });
+
+    it('generates the requested number of subtraction questions without duplicates', () => {
+      const questions = generateQuestions('subtraction', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = new Set(questions.map(q => q.question));
+      expect(keys.size).toBe(questions.length);
+    });
+
+    it('generates the requested number of division questions without duplicates', () => {
+      const questions = generateQuestions('division', 1, 10);
+      expect(questions).toHaveLength(10);
+      const keys = new Set(questions.map(q => q.question));
+      expect(keys.size).toBe(questions.length);
+    });
+
+    it('treats a + b and b + a as duplicates for addition', () => {
+      // Run many times to confirm no commutative duplicates appear
+      for (let i = 0; i < 5; i++) {
+        const questions = generateQuestions('addition', 1, 10);
+        const keys = questions.map(q =>
+          q.question.split(' + ').map(Number).sort((a, b) => a - b).join('+')
+        );
+        const unique = new Set(keys);
+        expect(unique.size).toBe(questions.length);
+      }
+    });
+
+    it('handles exhausting the unique space for 1-digit multiplication without duplicates', () => {
+      const requestedCount = 100;
+      const questions = generateQuestions('multiplication', 1, requestedCount);
+
+      // Should never return more than requested
+      expect(questions.length).toBeLessThanOrEqual(requestedCount);
+
+      // Normalize questions so a × b and b × a are treated as duplicates
+      const keys = questions.map(q =>
+        q.question.split(' × ').map(Number).sort((a, b) => a - b).join('×')
+      );
+      const unique = new Set(keys);
+      expect(unique.size).toBe(questions.length);
     });
   });
 

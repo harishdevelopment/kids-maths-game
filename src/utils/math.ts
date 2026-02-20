@@ -42,6 +42,41 @@ export function generateQuestion(type: TestType, digits: number): Question {
   return { question, answer };
 }
 
+export function generateQuestions(type: TestType, digits: number, count: number): Question[] {
+  const questions: Question[] = [];
+  const seen = new Set<string>();
+  let attempts = 0;
+  // Allow up to 100 attempts per question to find a unique one before giving up
+  const maxAttempts = count * 100;
+
+  while (questions.length < count && attempts < maxAttempts) {
+    attempts++;
+    const q = generateQuestion(type, digits);
+    const key =
+      type === 'multiplication' || type === 'addition'
+        ? q.question
+            .split(type === 'multiplication' ? ' × ' : ' + ')
+            .map(Number)
+            .sort((x, y) => x - y)
+            .join(type === 'multiplication' ? '×' : '+')
+        : q.question;
+
+    if (!seen.has(key)) {
+      seen.add(key);
+      questions.push(q);
+    }
+  }
+
+  // Note: if unique combinations are exhausted, we may return fewer questions than requested.
+  if (questions.length < count) {
+    console.warn(
+      `generateQuestions: generated ${questions.length} unique question(s) out of requested ${count} ` +
+        `(type="${type}", digits=${digits}, attempts=${attempts}, maxAttempts=${maxAttempts}).`
+    );
+  }
+  return questions;
+}
+
 export function checkAnswer(userInput: string, correctAnswer: number): boolean {
   return userInput.trim() !== '' && Number(userInput) === correctAnswer;
 }

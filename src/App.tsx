@@ -6,7 +6,7 @@ import { ConfigPanel } from './components/ConfigPanel';
 import { NumberPad } from './components/NumberPad';
 import { ScorePanel } from './components/ScorePanel';
 import { UIControls } from './components/UIControls';
-import { generateQuestion } from './utils/math';
+import { generateQuestions } from './utils/math';
 import { useDeviceType } from './utils/useDeviceType';
 import type { Question, TestType, TestConfig } from './types';
 
@@ -65,13 +65,16 @@ function App() {
   };
 
   const startTest = () => {
-    const qs = Array.from(
-      { length: config.numQuestions }, 
-      () => generateQuestion(config.testType as TestType, config.digits)
-    );
+    const qs = generateQuestions(config.testType as TestType, config.digits, config.numQuestions);
+
+    if (qs.length < config.numQuestions) {
+      window.alert(
+        `Only ${qs.length} unique questions could be generated for the current settings, so the test will use ${qs.length} questions instead of ${config.numQuestions}.`
+      );
+    }
     setQuestions(qs);
     questionsRef.current = qs; // Ensure ref is updated immediately
-    const initialUserAnswers = Array(config.numQuestions).fill('');
+    const initialUserAnswers = Array(qs.length).fill('');
     setUserAnswers(initialUserAnswers);
     latestUserAnswersRef.current = initialUserAnswers;
     runningScoreRef.current = 0;
