@@ -74,7 +74,7 @@ function App() {
     }
     setQuestions(qs);
     questionsRef.current = qs; // Ensure ref is updated immediately
-    const initialUserAnswers = Array(config.numQuestions).fill('');
+    const initialUserAnswers = Array(qs.length).fill('');
     setUserAnswers(initialUserAnswers);
     latestUserAnswersRef.current = initialUserAnswers;
     runningScoreRef.current = 0;
