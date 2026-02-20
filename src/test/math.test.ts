@@ -77,6 +77,18 @@ describe('Math Utils', () => {
       expect(keys.size).toBe(questions.length);
     });
 
+    it('treats a + b and b + a as duplicates for addition', () => {
+      // Run many times to confirm no commutative duplicates appear
+      for (let i = 0; i < 5; i++) {
+        const questions = generateQuestions('addition', 1, 10);
+        const keys = questions.map(q =>
+          q.question.split(' + ').map(Number).sort((a, b) => a - b).join('+')
+        );
+        const unique = new Set(keys);
+        expect(unique.size).toBe(questions.length);
+      }
+    });
+
     it('handles exhausting the unique space for 1-digit multiplication without duplicates', () => {
       const requestedCount = 100;
       const questions = generateQuestions('multiplication', 1, requestedCount);
