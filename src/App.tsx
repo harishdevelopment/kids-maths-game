@@ -66,6 +66,12 @@ function App() {
 
   const startTest = () => {
     const qs = generateQuestions(config.testType as TestType, config.digits, config.numQuestions);
+
+    if (qs.length < config.numQuestions) {
+      window.alert(
+        `Only ${qs.length} unique questions could be generated for the current settings, so the test will use ${qs.length} questions instead of ${config.numQuestions}.`
+      );
+    }
     setQuestions(qs);
     questionsRef.current = qs; // Ensure ref is updated immediately
     const initialUserAnswers = Array(config.numQuestions).fill('');
